@@ -26,7 +26,14 @@ res.status(200).json(req.recipe)
 
 
 
+// exports.recipeCreate = async ( req, res, next) => {
+// if (!req.user._id.equals(req.category.owner._id))
 
+// return next({
+//     status:401,
+//     message: "you are not the owner",
+// })
+// }
 
 
 

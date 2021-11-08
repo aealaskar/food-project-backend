@@ -13,19 +13,20 @@ const RecipeSchema = Schema({
         type:String,
         required: true,
     },
-    categories: [{
-        type: Schema.Type._id,
-        ref: "Category"
-    }],
+  
+    // categories: [{
+    //     type: Schema.Type._id,
+    //     ref: "Category"
+    // }],
 
     // ingredients: [(
     //     type: Schema.Types._id,
     //     ref: "Ingredients"
     // )],
-    owner: { 
-        type: Schema.Types.Objectid,
-        ref : "User"
-    },
+    // owner: { 
+    //     type: Schema.Types.Objectid,
+    //     ref : "User"
+    // },
 
 
 })
@@ -33,4 +34,4 @@ const RecipeSchema = Schema({
 
 RecipeSchema.plugin(mongooseSlugPlugin,{ tmpl: "<%=name%>" })
 
-module.exports = model(Recipe, RecipeSchema)
+module.exports = model("Recipe", RecipeSchema)

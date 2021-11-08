@@ -27,8 +27,8 @@ router.get(
 
 router.get("/:recipeId", fetchDetailRecipe);
 
-router.post("/:cateogryId/recipe", 
-upload.single("image"),
-recipeCreate)
+// router.post("/:cateogryId/recipe", 
+// upload.single("image"),
+// recipeCreate)
 
 module.exports = router;

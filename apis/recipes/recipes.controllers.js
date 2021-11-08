@@ -24,6 +24,16 @@ exports.recipeListFetch = async ( req, res,next) => {
 exports.fetchDetailRecipe = async (req, res, next) =>
 res.status(200).json(req.recipe)
 
+// create an ingredent controller/routes ---- many to many 
+exports.createRecipe = async (req, res, next) => {
+    try {
+      const newRecipe = await Recipe.create(req.body); // we would have to go to postman,body,raw ,json
+      return res.status(201).json(newRecipe);
+    } catch (error) {
+      next(error);
+    }
+  };
+
 
 
 // exports.recipeCreate = async ( req, res, next) => {
@@ -32,8 +42,27 @@ res.status(200).json(req.recipe)
 // return next({
 //     status:401,
 //     message: "you are not the owner",
-// })
+// })}
+// try {
+//     if (req.file) {
+//         req.body.image = `http://${req.get("host")}/media/${req.file.filename}`
+//     }
+//     req.body.recipe = req.params.categoryId;
+
+//  const newRecipe = await Recipe.create(req.body)
+//  await Category.findByIdAndUpdate(
+//      {
+//          _id:req.params.categoryId,
+//      },
+//      {
+//          $push:{ recipes : newRecipe._id},
+//      }
+//  )
+//  return res.status(201).json(newRecipe)
+// } catch (error) {
+//     next(error)
 // }
+
 
 
 

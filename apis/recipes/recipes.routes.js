@@ -7,6 +7,7 @@ const {
     fetchRecipe,
     fetchDetailRecipe,
     recipeListFetch,
+    createRecipe,
 } = require("../recipes/recipes.controllers");
 
 
@@ -26,6 +27,6 @@ router.get("/", recipeListFetch)
 
 router.get("/:recipeId", fetchDetailRecipe)
 
-router.post()
+router.post("/", createRecipe)
 
 module.exports = router

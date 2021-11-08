@@ -1,21 +1,25 @@
 const express = require("express");
-const connectDB = require("./db/database");
+const connectDB = require("./DB/databases");
 const userRoutes = require("./apis/users/user.routes");
 const passport = require("passport");
+const recipeRoutes = require("./apis/recipes/recipes.routes")
 const { localStrategy, jwtStrategy } = require("./middleware/passport");
 const cors = require("cors");
 
+
 const app = express();
-app.use(cors());
+
+
 connectDB();
+
 
 app.use(express.json());
 app.use(passport.initialize());
 passport.use(localStrategy);
 passport.use(jwtStrategy);
-
+app.use(cors());
 //Routes
-app.use("/api", userRoutes);
+
 
 app.listen(8000, () => {
   console.log("The application is running on localhost:8000");
@@ -23,6 +27,9 @@ app.listen(8000, () => {
   
 
 
+
+app.use("/api", userRoutes);
+app.use("/api/recipes", recipeRoutes)
 
 
 // basic instructions to start a BE project-------------------------------------------

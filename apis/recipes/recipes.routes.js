@@ -4,31 +4,30 @@ const passport = require("passport");
 const router = express.Router();
 
 const {
-  fetchRecipe,
-  fetchDetailRecipe,
-  recipeListFetch,
+
+    fetchRecipe,
+    fetchDetailRecipe,
+    recipeListFetch,
+    createRecipe,
 } = require("../recipes/recipes.controllers");
 
-router.param("recipeId", async (req, res, next, recipeId) => {
-  const recipe = await fetchRecipe(recipeId, next);
-  if (recipe) {
-    req.recipe = recipe;
-    next();
-  } else {
-    next({ status: 404, message: "recipe not found!" });
-  }
-});
 
-router.get(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  recipeListFetch
-);
 
-router.get("/:recipeId", fetchDetailRecipe);
 
-// router.post("/:cateogryId/recipe", 
-// upload.single("image"),
-// recipeCreate)
+router.param("recipeId", async (req, res, next, recipeId) =>{
+const recipe = await fetchRecipe(recipeId, next);
+if (recipe) {
+    req.recipe = recipe
+    next()
+} else {
+    next({ status: 404, message: "recipe not found!"})
+}
+})
 
-module.exports = router;
+router.get("/", recipeListFetch)
+
+router.get("/:recipeId", fetchDetailRecipe)
+
+router.post("/", createRecipe)
+
+module.exports = router

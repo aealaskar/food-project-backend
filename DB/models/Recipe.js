@@ -22,7 +22,7 @@ const RecipeSchema = Schema({
     // ingredients: [(
     //     type: Schema.Types._id,
     //     ref: "Ingredients"
-    // )],
+    // )]
     // owner: { 
     //     type: Schema.Types.Objectid,
     //     ref : "User"

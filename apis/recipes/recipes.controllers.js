@@ -24,6 +24,16 @@ exports.recipeListFetch = async ( req, res,next) => {
 exports.fetchDetailRecipe = async (req, res, next) =>
 res.status(200).json(req.recipe)
 
+// create an ingredent controller/routes ---- many to many 
+exports.createRecipe = async (req, res, next) => {
+    try {
+      const newRecipe = await Recipe.create(req.body); // we would have to go to postman,body,raw ,json
+      return res.status(201).json(newRecipe);
+    } catch (error) {
+      next(error);
+    }
+  };
+
 
 
 // exports.recipeCreate = async ( req, res, next) => {

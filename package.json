@@ -1,0 +1,16 @@
+{
+  "name": "food-project-backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "git@github.com:aealaskar/food-project-backend.git",
+  "author": "<hassandak1d@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "global": "^4.4.0",
+    "nodemon": "^2.0.14"
+  }
+}

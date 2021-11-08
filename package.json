@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "main": "app.js",
   "repository": "git@github.com:aealaskar/food-project-backend.git",
+
+  "author": "ahmad <aealaskar@gmail.com>",
+  "license": "MIT",
+  
+  
+
   "author": "<hassandak1d@hotmail.com>",
   "license": "MIT",
   "scripts": {

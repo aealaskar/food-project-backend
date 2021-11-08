@@ -103,8 +103,8 @@ dist
 # TernJS port file
 .tern-port
 
-db/database.js
+DB\models
 
 
 database.js
-
+User.js

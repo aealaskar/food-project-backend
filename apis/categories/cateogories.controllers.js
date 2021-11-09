@@ -1,10 +1,19 @@
 const Category = require("../../DB/models/Category");
 const Recipe = require("../../DB/models/Recipe");
 
-exports.fetchCategory = async (categoryId, next) => {
+exports.fetchCategory = async (req, res, categoryId, next) => {
   try {
     const category = await Category.findById(categoryId);
-    return category;
+    return res.json(category);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.categoryListFetch = async (req, res, next) => {
+  try {
+    const categories = await Category.find();
+    return res.json(categories);
   } catch (error) {
     next(error);
   }

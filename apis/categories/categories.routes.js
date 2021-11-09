@@ -7,10 +7,11 @@ const {
   fetchCategory,
   createCategory,
   recipeCreate,
+  categoryListFetch,
 } = require("./cateogories.controllers");
 
 router.param("categoryId", async (req, res, next, categoryId) => {
-  const category = await fetchCategory(categoryId, next);
+  const category = await fetchCategory(req, res, categoryId, next);
   if (category) {
     req.category = category;
     next();
@@ -19,7 +20,8 @@ router.param("categoryId", async (req, res, next, categoryId) => {
   }
 });
 
-router.get("/", fetchCategory);
+router.get("/", categoryListFetch);
+router.get("/:categoryId", fetchCategory);
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),

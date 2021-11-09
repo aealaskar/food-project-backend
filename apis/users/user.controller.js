@@ -28,6 +28,6 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.signin = async (req, res) => {
-  const token = tokenGenerator(req.body);
+  const token = tokenGenerator(req.user);
   res.json({ token });
 };

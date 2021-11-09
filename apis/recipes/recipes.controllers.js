@@ -43,11 +43,11 @@ exports.createRecipe = async (req, res, next) => {
 
 exports.ingredientCreateRecipe = async (req, res, next) => {
   // REVIEW: Why do you need to check the recipe owner when creating ingredients?
-  if (!req.user._id.equals(req.recipe.owner._id))
-    return next({
-      status: 401,
-      message: "you are not the owner",
-    });
+  // if (!req.user._id.equals(req.recipe.owner._id))
+  //   return next({
+  //     status: 401,
+  //     message: "you are not the owner",
+  //   });
   try {
     if (req.file) {
       req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;

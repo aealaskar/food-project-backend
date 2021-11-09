@@ -32,13 +32,12 @@ router.post(
 ); // i need to add users to recipe
 // that user we will take its id and match it for ingredeints
 
-// REVIEW: recipeID is misspelled
 // REVIEW: Why do you need the recipe ID when creating an ingredient? Remember that an ingredient doesn't belong to one recipe. It can belong to many recipes.
-router.post(
-  "/:recipeId/ingredients",
-  passport.authenticate("jwt", { session: false }),
-  upload.single("image"),
-  ingredientCreateRecipe
-);
+// router.post(
+//   "/:recipeId/ingredients",
+//   passport.authenticate("jwt", { session: false }),
+//   upload.single("image"),
+//   ingredientCreateRecipe
+// );
 
 module.exports = router;

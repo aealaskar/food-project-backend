@@ -28,7 +28,14 @@ exports.createIngredient = async (req, res, next) => {
     // req.body = { ...req.body, recipe: recipeId };
     const newIngredient = await Ingredient.create(req.body); // we would have to go to postman,body,raw ,json
 
-    // await Recipe.findOneAndUpdate();
+    await Recipe.findOneAndUpdate(
+      {
+        _id: req.params.recipeId,
+      },
+      {
+        $push: { ingredients: newIngredient._id },
+      }
+    );
 
     return res.status(201).json(newIngredient);
   } catch (error) {

@@ -1,9 +1,10 @@
 const express = require("express");
 
-const connectDB = require("./DB/database");
+const connectDB = require("./DB/databases");
 
 const userRoutes = require("./apis/users/user.routes");
 const categoryRoutes = require("./apis/categories/categories.routes")
+const ingredientRoutes = require("./apis/ingredients/ingredients.routes")
 const errorHandler = require("./middleware/errorHandler")
 const passport = require("passport");
 const recipeRoutes = require("./apis/recipes/recipes.routes")
@@ -31,6 +32,7 @@ app.use(cors());
 app.use("/api", userRoutes);
 app.use("/api/category", categoryRoutes);
 app.use("/api/recipes", recipeRoutes)
+app.use("/api/ingredients", ingredientRoutes)
 
 app.use(errorHandler);
 

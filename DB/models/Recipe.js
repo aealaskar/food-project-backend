@@ -13,7 +13,12 @@ const RecipeSchema = Schema({
         type:String,
         required: true,
     },
-  
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    
+  // ingredients: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
     // categories: [{
     //     type: Schema.Type._id,
     //     ref: "Category"

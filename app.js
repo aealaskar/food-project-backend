@@ -3,24 +3,19 @@ const express = require("express");
 const connectDB = require("./DB/databases");
 
 const userRoutes = require("./apis/users/user.routes");
-const categoryRoutes = require("./apis/categories/categories.routes")
-const ingredientRoutes = require("./apis/ingredients/ingredients.routes")
-const errorHandler = require("./middleware/errorHandler")
+const categoryRoutes = require("./apis/categories/categories.routes");
+const ingredientRoutes = require("./apis/ingredients/ingredients.routes");
+const errorHandler = require("./middleware/errorHandler");
 const passport = require("passport");
-const recipeRoutes = require("./apis/recipes/recipes.routes")
+const recipeRoutes = require("./apis/recipes/recipes.routes");
 const { localStrategy, jwtStrategy } = require("./middleware/passport");
 const cors = require("cors");
 
-
 const app = express();
-
 
 connectDB();
 
 // Middleware
-
-
-
 
 app.use(express.json());
 app.use(passport.initialize());
@@ -30,22 +25,17 @@ app.use(cors());
 //Routes
 
 app.use("/api", userRoutes);
+// REVIEW: Path should be /api/categories
 app.use("/api/category", categoryRoutes);
-app.use("/api/recipes", recipeRoutes)
-app.use("/api/ingredients", ingredientRoutes)
+app.use("/api/recipes", recipeRoutes);
+app.use("/api/ingredients", ingredientRoutes);
+// REVIEW: Uploading images will not work since you didnt create your media route here
 
 app.use(errorHandler);
 
 app.listen(8000, () => {
   console.log("The application is running on localhost:8000");
 });
-
-
-
-
-
-
-
 
 // basic instructions to start a BE project-------------------------------------------
 // yarn init -y  ------- to create a package.json file

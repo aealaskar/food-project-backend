@@ -13,6 +13,7 @@ exports.localStrategy = new LocalStrategy(async (username, password, done) => {
       if (passwordMatch) {
         return done(null, user);
       } else {
+        // REVIEW: false not error
         return done(null, error);
       }
     } else {

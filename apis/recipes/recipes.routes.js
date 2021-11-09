@@ -8,8 +8,10 @@ const {
     fetchRecipe,
     fetchDetailRecipe,
     recipeListFetch,
+    ingredientCreateRecipe,
     createRecipe,
-} = require("../recipes/recipes.controllers");
+
+} = require("./recipes.controllers");
 
 
 
@@ -28,6 +30,11 @@ router.get("/", recipeListFetch)
 
 router.get("/:recipeId", fetchDetailRecipe)
 
-router.post("/", createRecipe)
+router.post("/",passport.authenticate("jwt", { session: false }) ,createRecipe) // i need to add users to recipe
+// that user we will take its id and match it for ingredeints
+
+router.post("/:recipieId/ingredients", passport.authenticate("jwt", { session: false }),
+upload.single("image"), 
+ingredientCreateRecipe)
 
 module.exports = router

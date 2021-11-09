@@ -35,7 +35,7 @@ router.post(
 // REVIEW: recipeID is misspelled
 // REVIEW: Why do you need the recipe ID when creating an ingredient? Remember that an ingredient doesn't belong to one recipe. It can belong to many recipes.
 router.post(
-  "/:recipieId/ingredients",
+  "/:recipeId/ingredients",
   passport.authenticate("jwt", { session: false }),
   upload.single("image"),
   ingredientCreateRecipe

@@ -1,4 +1,5 @@
 const Recipe = require("../../DB/models/Recipe");
+const Ingredient = require("../../DB/models/Ingredient");
 
 exports.fetchRecipe = async (recipeId, next) => {
   try {
@@ -52,10 +53,20 @@ exports.ingredientCreateRecipe = async (req, res, next) => {
     if (req.file) {
       req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
     }
-    req.body.ingredient = req.params.recipeId;
+    // console.log("req.body before", req.body);
+    // console.log("req.params before", req.params.recipeId);
+    // req.body = req.params.recipeId;
+    const recipeId = req.params.recipeId;
+    req.body = { ...req.body, recipe: recipeId };
+    console.log("this is after updating", req.body);
 
     const newIngredient = await Ingredient.create(req.body);
-    await Recipe.findByIdAndUpdate(
+    await newRecipe.populate({
+      path: "recipe",
+      select: "name",
+    });
+
+    await Recipe.findOneAndUpdate(
       {
         _id: req.params.recipeId,
       },
@@ -63,6 +74,7 @@ exports.ingredientCreateRecipe = async (req, res, next) => {
         $push: { ingredients: newIngredient._id },
       }
     );
+
     return res.status(201).json(newIngredient);
   } catch (error) {
     next(error);

@@ -12,5 +12,6 @@ const IngredientSchema = mongoose.Schema({
     //   enum: ["gr", "lb", "l", "tsp", "tbsp", "cup", "oz", null],
     // },
   },
+  recipe: [{ type: mongoose.Schema.Types.ObjectId, ref: "Recipe" }],
 });
 module.exports = mongoose.model("Ingredient", IngredientSchema);

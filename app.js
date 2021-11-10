@@ -1,6 +1,7 @@
 const express = require("express");
 
 const connectDB = require("./DB/databases");
+const path = require("path");
 
 const userRoutes = require("./apis/users/user.routes");
 const categoryRoutes = require("./apis/categories/categories.routes");
@@ -30,7 +31,7 @@ app.use("/api/category", categoryRoutes);
 app.use("/api/recipes", recipeRoutes);
 app.use("/api/ingredients", ingredientRoutes);
 // REVIEW: Uploading images will not work since you didnt create your media route here
-
+app.use("/media", express.static(path.join(__dirname, "media")));
 app.use(errorHandler);
 
 app.listen(8000, () => {

@@ -30,21 +30,22 @@ exports.createRecipe = async (req, res, next) => {
       req.body.image = `http://${req.get("host")}/media/${req.file.filename}`;
     }
     req.body.owner = req.user._id;
-    const categoryId = req.params.categoryId;
-    req.body = { ...req.body, category: categoryId };
+    // const categoryId = req.params.categoryId;
+    // req.body = { ...req.body, category: categoryId };
     const newRecipe = await Recipe.create(req.body); // we would have to go to postman,body,raw ,json
     await newRecipe.populate({
       path: "owner",
       select: "username",
     });
-    await Recipe.findOneAndUpdate(
-      {
-        _id: req.params.recipeId,
-      },
-      {
-        $push: { ingredients: newIngredient._id },
-      }
-    );
+    // const ingredients =req.body.ingredeints
+    // await Recipe.findOneAndUpdate(
+    //   {
+    //     _id: req.params.recipeId,
+    //   },
+    //   {
+    //     $push: { ingredients: newIngredient._id },
+    //   }
+    // );
     return res.status(201).json(newRecipe);
   } catch (error) {
     next(error);
